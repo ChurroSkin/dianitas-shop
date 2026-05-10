@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dianita's Shop by DJ's | Custom Creations</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Dianita's Shop Logo" class="nav-logo">
+            </a>
+        </div>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
+                <li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li>
+            </ul>
+            <button id="lang-toggle" class="lang-btn">ES</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <img src="banner.png" alt="Dianita's Shop Banner" class="hero-banner">
+            <div class="hero-text-box">
+                <h1 class="translate main-title" data-en="Your special items made a reality!" data-es="¡Tus artículos especiales hechos realidad!">Your special items made a reality!</h1>
+                <a href="#order" class="btn translate" data-en="Request a Custom Item" data-es="Solicitar un artículo">Request a Custom Item</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="how-it-works">
+        <h2 class="translate" data-en="How to Order" data-es="Cómo Hacer un Pedido">How to Order</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3 class="translate" data-en="Choose Your Item" data-es="Elige tu Artículo">Choose Your Item</h3>
+                <p class="translate" data-en="Browse our work and pick the item type you want to customize." data-es="Mira nuestro trabajo y elige el tipo de artículo que quieres personalizar.">Browse our work and pick the item type you want to customize.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3 class="translate" data-en="Share Your Vision" data-es="Comparte tu Visión">Share Your Vision</h3>
+                <p class="translate" data-en="Fill out the form with your design ideas and upload a reference image." data-es="Llena el formulario con tus ideas de diseño y sube una imagen de referencia.">Fill out the form with your design ideas and upload a reference image.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3 class="translate" data-en="Get a Quote" data-es="Recibe una Cotización">Get a Quote</h3>
+                <p class="translate" data-en="We will review your request and contact you to finalize the details." data-es="Revisaremos tu solicitud y te contactaremos para finalizar los detalles.">We will review your request and contact you to finalize the details.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="translate" data-en="Our Work" data-es="Nuestro Trabajo">Our Work</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid1.mp4" type="video/mp4"></video><p class="translate" data-en="Custom Tumblers" data-es="Vasos Térmicos">Custom Tumblers</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid2.mp4" type="video/mp4"></video><p class="translate" data-en="Baseball Jerseys" data-es="Jerseys de Béisbol">Baseball Jerseys</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid3.mp4" type="video/mp4"></video><p class="translate" data-en="Custom Apparel" data-es="Ropa Personalizada">Custom Apparel</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid4.mp4" type="video/mp4"></video><p class="translate" data-en="Graphic Tees" data-es="Camisetas Gráficas">Graphic Tees</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid5.mp4" type="video/mp4"></video><p class="translate" data-en="Frosted Glassware" data-es="Cristalería Esmerilada">Frosted Glassware</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid6.mp4" type="video/mp4"></video><p class="translate" data-en="Custom Polos" data-es="Polos Personalizados">Custom Polos</p></div>
+                <div class="product-card"><video autoplay loop muted playsinline class="product-media"><source src="carousel-vid7.mp4" type="video/mp4"></video><p class="translate" data-en="Birthday Specials" data-es="Especiales de Cumpleaños">Birthday Specials</p></div>
+                <div class="product-card"><img src="carousel-pic.jpeg" alt="Custom Basket" class="product-media"><p class="translate" data-en="Custom Gift Baskets" data-es="Canastas de Regalo">Custom Gift Baskets</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="form-wrapper">
+        <section id="order">
+            <h2 class="translate" data-en="Custom Request Form" data-es="Formulario de Pedido">Custom Request Form</h2>
+            <form id="secureOrderForm">
+                <input type="text" id="nameInput" placeholder="Your Name" required maxlength="50">
+                <input type="email" id="emailInput" placeholder="Your Email" required>
+                <select id="itemSelect" required>
+                    <option value="" class="translate" data-en="Select an Item Type" data-es="Selecciona un tipo de artículo">Select an Item Type</option>
+                    <option value="mug">Custom Mug</option>
+                    <option value="tops">Tops (Shirts/Jerseys)</option>
+                    <option value="tumbler">Tumbler</option>
+                    <option value="headwear">Headwear (Bows/Hats)</option>
+                    <option value="other">Other / Sign</option>
+                </select>
+                <textarea id="descInput" placeholder="Describe your custom design" rows="5"></textarea>
+
+                <label for="fileInput" class="custom-file-label">
+                    <span class="translate" data-en="+ Upload Reference Image" data-es="+ Subir Imagen de Referencia">+ Upload Reference Image</span>
+                </label>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <div id="file-name-display" class="file-name"></div>
+
+                <div class="price-display">
+                    <span class="translate" data-en="Estimated Starting Price: " data-es="Precio Inicial Estimado: ">Estimated Starting Price: </span>
+                    <span id="price-amount">$0.00</span>
+                </div>
+
+                <div id="form-success" class="status-msg success-msg translate" data-en="✔ Request sent successfully!" data-es="✔ ¡Solicitud enviada con éxito!">✔ Request sent successfully!</div>
+                <button type="submit" class="btn-submit translate" data-en="Send Request" data-es="Enviar Solicitud">Send Request</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="translate" data-en="Quick Links" data-es="Enlaces Rápidos">Quick Links</h4>
+                <ul>
+                    <li><a href="index.html" class="translate" data-en="Home" data-es="Inicio">Home</a></li>
+                    <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
+                    <li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Contact Us" data-es="Contáctanos">Contact Us</h4>
+                <p>Everett, Massachusetts</p>
+                <p class="translate" data-en="Mon - Sat: 9am - 6pm" data-es="Lun - Sáb: 9am - 6pm">Mon - Sat: 9am - 6pm</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Follow Our Craft" data-es="Sigue Nuestro Arte">Follow Our Craft</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@hermosos_detallitos?_r=1&_t=ZS-96EdJAwPPqp" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="security-badge">
+                    <span class="dot"></span>
+                    <span class="translate" data-en="Secure Input Enabled" data-es="Entrada Segura Habilitada">Secure Input Enabled</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dianita's Shop by DJ's</p>
+        </div>
+    </footer>
+
+    <script>
+        const langToggle = document.getElementById('lang-toggle');
+        const translateElements = document.querySelectorAll('.translate');
+        const orderForm = document.getElementById('secureOrderForm');
+        const itemSelect = document.getElementById('itemSelect');
+        const priceAmount = document.getElementById('price-amount');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('file-name-display');
+
+        const priceMap = { "mug": 15.0, "tops": 25.0, "tumbler": 25.0, "headwear": 12.0, "other": 20.0 };
+        let currentLang = 'en';
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            langToggle.innerText = currentLang === 'en' ? 'ES' : 'EN';
+            translateElements.forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) el.innerText = text;
+            });
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.innerText = fileInput.files[0].name;
+                fileNameDisplay.style.display = 'block';
+            }
+        });
+
+        itemSelect.addEventListener('change', () => {
+            const val = itemSelect.value;
+            priceAmount.innerText = val ? `$${priceMap[val].toFixed(2)}` : "$0.00";
+            priceAmount.parentElement.style.opacity = val ? "1" : "0.5";
+        });
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('form-success').style.display = 'block';
+            orderForm.reset();
+            fileNameDisplay.style.display = 'none';
+            priceAmount.innerText = "$0.00";
+            setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 4000);
+        });
+    </script>
+</body>
+</html>

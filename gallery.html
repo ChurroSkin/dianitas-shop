@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Dianita's Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container"><a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a></div>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="story.html">Our Story</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <button id="lang-toggle" class="lang-btn">ES</button>
+        </div>
+    </nav>
+
+    <header class="subpage-hero">
+        <h1 class="translate main-title" data-en="Our Full Gallery" data-es="Nuestra Galería Completa">Our Full Gallery</h1>
+    </header>
+
+    <section class="content-section">
+        <div class="gallery-grid">
+            <div class="gallery-item"><video autoplay loop muted playsinline><source src="carousel-vid1.mp4"></video></div>
+            <div class="gallery-item"><video autoplay loop muted playsinline><source src="carousel-vid2.mp4"></video></div>
+            <div class="gallery-item"><video autoplay loop muted playsinline><source src="carousel-vid3.mp4"></video></div>
+            <div class="gallery-item"><img src="carousel-pic.jpeg" alt="Custom Basket"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="translate" data-en="Quick Links" data-es="Enlaces Rápidos">Quick Links</h4>
+                <ul><li><a href="index.html">Home</a></li><li><a href="story.html">Our Story</a></li><li><a href="gallery.html">Gallery</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Contact Us" data-es="Contáctanos">Contact Us</h4>
+                <p>Everett, Massachusetts</p>
+                <p>Mon - Sat: 9am - 6pm</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Follow Our Craft" data-es="Sigue Nuestro Arte">Follow Our Craft</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@hermosos_detallitos?_r=1&_t=ZS-96EdJAwPPqp" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="security-badge"><span class="dot"></span><span>Secure Input Enabled</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Dianita's Shop by DJ's</p></div>
+    </footer>
+
+    <script>
+        const langToggle = document.getElementById('lang-toggle');
+        const translateElements = document.querySelectorAll('.translate');
+        let currentLang = 'en';
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            langToggle.innerText = currentLang === 'en' ? 'ES' : 'EN';
+            translateElements.forEach(el => { el.innerText = el.getAttribute(`data-${currentLang}`); });
+        });
+    </script>
+</body>
+</html>

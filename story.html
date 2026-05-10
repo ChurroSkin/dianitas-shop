@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Dianita's Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container"><a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a></div>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
+                <li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li>
+            </ul>
+            <button id="lang-toggle" class="lang-btn">ES</button>
+        </div>
+    </nav>
+
+    <header class="subpage-hero">
+        <h1 class="translate main-title" data-en="The Heart Behind the Creations" data-es="El Corazón Detrás de las Creaciones">The Heart Behind the Creations</h1>
+    </header>
+
+    <section class="content-section">
+        <div class="story-flex">
+            <img src="dianita.jpeg" alt="Dianita at work" class="story-image">
+            <div class="story-text">
+                <h2 class="translate" data-en="A Journey of Passion" data-es="Un Viaje de Pasión">A Journey of Passion</h2>
+                <p class="translate" data-en="Dianita started this shop with a simple mission: to bring a personal, handcrafted touch to everyday items. What began as a passion for creating gifts for family has grown into a dedicated creative studio." data-es="Dianita comenzó esta tienda con una misión simple: dar un toque personal y artesanal a los artículos cotidianos. Lo que comenzó como una pasión por crear regalos para la familia se ha convertido en un estudio creativo dedicado.">Dianita started this shop with a simple mission: to bring a personal, handcrafted touch to everyday items.</p>
+                
+                <div class="stats-row">
+                    <div class="stat-item"><h2 class="stat-number">100%</h2><p class="translate" data-en="Handmade" data-es="Hecho a Mano">Handmade</p></div>
+                    <div class="stat-item"><h2 class="stat-number">500+</h2><p class="translate" data-en="Items Created" data-es="Artículos Creados">Items Created</p></div>
+                    <div class="stat-item"><h2 class="stat-number">5/5</h2><p class="translate" data-en="Rating" data-es="Calificación">Rating</p></div>
+                </div>
+
+                <p class="translate" data-en="Operating out of Everett, Massachusetts, we treat every order with the same level of respect and urgency. We are a family-run business that values connections." data-es="Operando desde Everett, Massachusetts, tratamos cada pedido con el mismo nivel de respeto y urgencia. Somos una empresa familiar que valora las conexiones.">Operating out of Everett, Massachusetts, we treat every order with the same level of respect and urgency.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="translate" data-en="Quick Links" data-es="Enlaces Rápidos">Quick Links</h4>
+                <ul><li><a href="index.html">Home</a></li><li><a href="story.html">Our Story</a></li><li><a href="gallery.html">Gallery</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Contact Us" data-es="Contáctanos">Contact Us</h4>
+                <p>Everett, Massachusetts</p>
+                <p>Mon - Sat: 9am - 6pm</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="translate" data-en="Follow Our Craft" data-es="Sigue Nuestro Arte">Follow Our Craft</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@hermosos_detallitos?_r=1&_t=ZS-96EdJAwPPqp" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="security-badge"><span class="dot"></span><span>Secure Input Enabled</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Dianita's Shop by DJ's</p></div>
+    </footer>
+
+    <script>
+        const langToggle = document.getElementById('lang-toggle');
+        const translateElements = document.querySelectorAll('.translate');
+        let currentLang = 'en';
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            langToggle.innerText = currentLang === 'en' ? 'ES' : 'EN';
+            translateElements.forEach(el => { el.innerText = el.getAttribute(`data-${currentLang}`); });
+        });
+    </script>
+</body>
+</html>
