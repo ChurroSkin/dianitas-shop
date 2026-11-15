@@ -63,7 +63,7 @@ fileInput.addEventListener("change", () => {
         fileNameDisplay.style.display = "none";
         return;
     }
-    if (!file.type.startsWith("image/")) {
+    if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type)) {
         fileInput.value = "";
         fileNameDisplay.textContent = messages[currentLang].invalidImage;
     } else if (file.size > 8 * 1024 * 1024) {
@@ -90,7 +90,7 @@ orderForm.addEventListener("submit", async (event) => {
     }
 
     const file = fileInput.files[0];
-    if (file && (!file.type.startsWith("image/") || file.size > 8 * 1024 * 1024)) {
+    if (file && (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type) || file.size > 8 * 1024 * 1024)) {
         showStatus(file.size > 8 * 1024 * 1024 ? messages[currentLang].tooLarge : messages[currentLang].invalidImage, "error");
         return;
     }
