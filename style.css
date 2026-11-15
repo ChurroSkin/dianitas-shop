@@ -292,3 +292,29 @@ footer {
 .stat-item { text-align: center; }
 .stat-number { color: #f06292; font-size: 1.8rem; margin: 0; }
 .stat-item p { font-size: 0.8rem; font-weight: bold; color: #9b59b6; margin: 0; }
+
+/* Accessible labels and WhatsApp order guidance */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-note {
+    margin: 8px 0 16px;
+    color: #666;
+    font-size: 0.82rem;
+    text-align: left;
+}
+
+.error-msg {
+    background: #fff1f0;
+    color: #a12622;
+    border: 1px solid #f2b8b5;
+}
