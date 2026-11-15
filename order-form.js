@@ -81,7 +81,7 @@ orderForm.addEventListener("submit", (event) => {
   event.preventDefault();
   if (!orderForm.reportValidity()) return;
 
-  if (!/^\\d{8,15}$/.test(WHATSAPP_NUMBER)) {
+  if (!/^\d{8,15}$/.test(WHATSAPP_NUMBER)) {
     showStatus(
       currentLang === "en"
         ? "WhatsApp ordering is not configured yet. Please contact the shop directly."
