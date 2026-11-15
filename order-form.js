@@ -1,5 +1,6 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase-config.js";
+// Replace this with Dianita's WhatsApp number in international format, digits only.
+// Example for a US number: 15551234567 (do not include +, spaces, or dashes).
+const WHATSAPP_NUMBER = "ADD_DIANITAS_WHATSAPP_NUMBER";
 
 const langToggle = document.getElementById("lang-toggle");
 const translateElements = document.querySelectorAll(".translate");
@@ -9,130 +10,128 @@ const priceAmount = document.getElementById("price-amount");
 const fileInput = document.getElementById("fileInput");
 const fileNameDisplay = document.getElementById("file-name-display");
 const formStatus = document.getElementById("form-status");
-const submitButton = orderForm.querySelector('button[type="submit"]');
 
 const priceMap = { mug: 15, tops: 25, tumbler: 25, headwear: 12, other: 20 };
 let currentLang = "en";
-const configured = !SUPABASE_URL.includes("YOUR_PROJECT_ID")
-    && !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE");
-const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-const messages = {
-    en: {
-        missingConfig: "Online ordering is not configured yet. Please contact the shop directly.",
-        invalidImage: "Please choose an image file.",
-        tooLarge: "Image must be 8 MB or smaller.",
-        sending: "Submitting your request...",
-        success: "Your request was submitted. The shop will contact you to confirm the details.",
-        failure: "We couldn't submit your request. Please try again or contact the shop directly.",
-        imageFailure: "Your request could not be saved with its image. Please try again or submit without the image.",
-        imageHelp: "Your request and optional reference image will be submitted for the shop to review."
-    },
-    es: {
-        missingConfig: "Los pedidos en línea aún no están configurados. Comunícate directamente con la tienda.",
-        invalidImage: "Por favor, elige un archivo de imagen.",
-        tooLarge: "La imagen debe pesar 8 MB o menos.",
-        sending: "Enviando tu solicitud...",
-        success: "Tu solicitud fue enviada. La tienda se comunicará contigo para confirmar los detalles.",
-        failure: "No pudimos enviar tu solicitud. Inténtalo de nuevo o comunícate con la tienda.",
-        imageFailure: "No se pudo guardar tu solicitud con la imagen. Inténtalo de nuevo o envía la solicitud sin la imagen.",
-        imageHelp: "Tu solicitud y la imagen de referencia opcional se enviarán para que la tienda las revise."
-    }
+const itemLabels = {
+  en: {
+    mug: "Custom Mug",
+    tops: "Tops (Shirts/Jerseys)",
+    tumbler: "Tumbler",
+    headwear: "Headwear (Bows/Hats)",
+    other: "Other / Sign"
+  },
+  es: {
+    mug: "Taza personalizada",
+    tops: "Ropa (camisetas/jerseys)",
+    tumbler: "Vaso térmico",
+    headwear: "Accesorios (lazos/gorras)",
+    other: "Otro / Letrero"
+  }
 };
 
-function showStatus(message, kind = "success") {
-    formStatus.className = "status-msg " + (kind === "error" ? "error-msg" : "success-msg");
-    formStatus.textContent = message;
-    formStatus.style.display = "block";
+function showStatus(message, isError = false) {
+  formStatus.className = "status-msg " + (isError ? "error-msg" : "success-msg");
+  formStatus.textContent = message;
+  formStatus.style.display = "block";
 }
 
 langToggle.addEventListener("click", () => {
-    currentLang = currentLang === "en" ? "es" : "en";
-    langToggle.innerText = currentLang === "en" ? "ES" : "EN";
-    document.documentElement.lang = currentLang;
-    translateElements.forEach((element) => {
-        const translated = element.getAttribute(`data-${currentLang}`);
-        if (translated) element.innerText = translated;
-    });
+  currentLang = currentLang === "en" ? "es" : "en";
+  langToggle.innerText = currentLang === "en" ? "ES" : "EN";
+  document.documentElement.lang = currentLang;
+  translateElements.forEach((element) => {
+    const translated = element.getAttribute(`data-${currentLang}`);
+    if (translated) element.innerText = translated;
+  });
 });
 
 fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    if (!file) {
-        fileNameDisplay.textContent = "";
-        fileNameDisplay.style.display = "none";
-        return;
-    }
-    if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type)) {
-        fileInput.value = "";
-        fileNameDisplay.textContent = messages[currentLang].invalidImage;
-    } else if (file.size > 8 * 1024 * 1024) {
-        fileInput.value = "";
-        fileNameDisplay.textContent = messages[currentLang].tooLarge;
-    } else {
-        fileNameDisplay.textContent = file.name;
-    }
-    fileNameDisplay.style.display = "block";
+  const file = fileInput.files[0];
+  if (!file) {
+    fileNameDisplay.textContent = "";
+    fileNameDisplay.style.display = "none";
+    return;
+  }
+
+  if (!file.type.startsWith("image/")) {
+    fileInput.value = "";
+    fileNameDisplay.textContent = currentLang === "en"
+      ? "Please choose an image file."
+      : "Por favor, elige un archivo de imagen.";
+  } else if (file.size > 8 * 1024 * 1024) {
+    fileInput.value = "";
+    fileNameDisplay.textContent = currentLang === "en"
+      ? "Image must be 8 MB or smaller."
+      : "La imagen debe pesar 8 MB o menos.";
+  } else {
+    fileNameDisplay.textContent = file.name;
+  }
+  fileNameDisplay.style.display = "block";
 });
 
 itemSelect.addEventListener("change", () => {
-    const value = itemSelect.value;
-    priceAmount.textContent = value ? `$${priceMap[value].toFixed(2)}` : "$0.00";
-    priceAmount.parentElement.style.opacity = value ? "1" : "0.5";
+  const value = itemSelect.value;
+  priceAmount.textContent = value ? `$${priceMap[value].toFixed(2)}` : "$0.00";
+  priceAmount.parentElement.style.opacity = value ? "1" : "0.5";
 });
 
-orderForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!orderForm.reportValidity()) return;
-    if (!configured) {
-        showStatus(messages[currentLang].missingConfig, "error");
-        return;
-    }
+orderForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!orderForm.reportValidity()) return;
 
-    const file = fileInput.files[0];
-    if (file && (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type) || file.size > 8 * 1024 * 1024)) {
-        showStatus(file.size > 8 * 1024 * 1024 ? messages[currentLang].tooLarge : messages[currentLang].invalidImage, "error");
-        return;
-    }
+  if (!/^\\d{8,15}$/.test(WHATSAPP_NUMBER)) {
+    showStatus(
+      currentLang === "en"
+        ? "WhatsApp ordering is not configured yet. Please contact the shop directly."
+        : "Los pedidos por WhatsApp aún no están configurados. Comunícate directamente con la tienda.",
+      true
+    );
+    return;
+  }
 
-    const orderId = crypto.randomUUID();
-    const order = {
-        id: orderId,
-        customer_name: document.getElementById("nameInput").value.trim(),
-        customer_email: document.getElementById("emailInput").value.trim(),
-        item_type: itemSelect.value,
-        design_description: document.getElementById("descInput").value.trim() || null,
-        status: "pending",
-        reference_image_path: file ? `${orderId}/${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}` : null
-    };
+  const name = document.getElementById("nameInput").value.trim();
+  const email = document.getElementById("emailInput").value.trim();
+  const description = document.getElementById("descInput").value.trim();
+  const item = itemLabels[currentLang][itemSelect.value];
+  const estimate = priceMap[itemSelect.value].toFixed(2);
+  const imageNote = fileInput.files.length
+    ? (currentLang === "en"
+      ? "I will attach my reference image in this WhatsApp chat."
+      : "Adjuntaré mi imagen de referencia en este chat de WhatsApp.")
+    : (currentLang === "en"
+      ? "No reference image selected."
+      : "No seleccioné una imagen de referencia.");
 
-    submitButton.disabled = true;
-    submitButton.textContent = messages[currentLang].sending;
-    formStatus.style.display = "none";
+  const message = currentLang === "en"
+    ? `Hello Dianita's Shop! I'd like to request a custom item.
 
-    try {
-        // Upload to a private bucket first; the order row stores only the private object path.
-        if (file) {
-            const { error: uploadError } = await supabase.storage
-                .from("order-references")
-                .upload(order.reference_image_path, file, { contentType: file.type, upsert: false });
-            if (uploadError) throw uploadError;
-        }
+Name: ${name}
+Email: ${email}
+Item: ${item}
+Estimated starting price: $${estimate}
+Design details: ${description || "Not provided"}
+Reference image: ${imageNote}
 
-        const { error: insertError } = await supabase.from("orders").insert(order);
-        if (insertError) throw insertError;
+I understand this is a starting estimate and would like to confirm the final quote.`
+    : `¡Hola, Dianita's Shop! Quisiera solicitar un artículo personalizado.
 
-        orderForm.reset();
-        fileNameDisplay.textContent = "";
-        fileNameDisplay.style.display = "none";
-        priceAmount.textContent = "$0.00";
-        priceAmount.parentElement.style.opacity = "0.5";
-        showStatus(messages[currentLang].success);
-    } catch (error) {
-        console.error("Order submission failed:", error);
-        showStatus(file ? messages[currentLang].imageFailure : messages[currentLang].failure, "error");
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = currentLang === "en" ? "Submit Order Request" : "Enviar Solicitud";
-    }
+Nombre: ${name}
+Correo: ${email}
+Artículo: ${item}
+Precio inicial estimado: $${estimate}
+Detalles: ${description || "No proporcionados"}
+Imagen de referencia: ${imageNote}
+
+Entiendo que este es un precio inicial y quisiera confirmar la cotización final.`;
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+  showStatus(
+    currentLang === "en"
+      ? "WhatsApp opened with your request. Review it, attach your image if applicable, and press Send in WhatsApp."
+      : "WhatsApp se abrió con tu solicitud. Revísala, adjunta tu imagen si corresponde y presiona Enviar."
+  );
 });
