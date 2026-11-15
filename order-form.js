@@ -1,6 +1,5 @@
-// Replace this with Dianita's WhatsApp number in international format, digits only.
-// Example for a US number: 15551234567 (do not include +, spaces, or dashes).
-const WHATSAPP_NUMBER = "ADD_DIANITAS_WHATSAPP_NUMBER";
+// Dianita's WhatsApp number in international format, digits only.
+const WHATSAPP_NUMBER = "17818887340";
 
 const langToggle = document.getElementById("lang-toggle");
 const translateElements = document.querySelectorAll(".translate");
