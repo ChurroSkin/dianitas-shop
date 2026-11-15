@@ -349,7 +349,7 @@ nav .nav-current {display:none}
   nav:not(.mobile-bottom-nav) .nav-menu {margin-left:auto}
   nav:not(.mobile-bottom-nav) .nav-menu ul {display:none}
   nav:not(.mobile-bottom-nav) .lang-btn {min-height:42px;min-width:54px;font-size:14px}
-  .mobile-bottom-nav {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:2000;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(255,248,253,.98);border-top:1px solid #eac9e8;box-shadow:0 -8px 28px rgba(91,36,86,.12)}
+  .mobile-bottom-nav {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed;top:auto;bottom:0;left:0;right:0;z-index:2000;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(255,248,253,.98);border-top:1px solid #eac9e8;box-shadow:0 -8px 28px rgba(91,36,86,.12)}
   .mobile-bottom-nav a {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:#78527c;font-size:11px;font-weight:600;min-height:50px;border-radius:14px}
   .mobile-bottom-nav a i {font-size:19px}
   .mobile-bottom-nav a[aria-current="page"] {color:#9b287c;background:#f8e4f5}
