@@ -6,6 +6,9 @@ function setLanguage(lang) {
     const text = el.getAttribute("data-" + lang);
     if (text !== null) el.textContent = text;
   });
+  document.querySelectorAll("[data-href-en][data-href-es]").forEach((el) => {
+    el.href = el.getAttribute("data-href-" + lang);
+  });
   const toggle = document.getElementById("lang-toggle");
   if (toggle) toggle.textContent = lang === "en" ? "ES" : "EN";
   try { localStorage.setItem(languageKey, lang); } catch (_) {}
