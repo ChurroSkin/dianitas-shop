@@ -18,6 +18,8 @@ create table if not exists public.orders (
 );
 
 alter table public.orders enable row level security;
+grant insert on table public.orders to anon, authenticated;
+grant select, update on table public.orders to authenticated;
 
 drop policy if exists "Public can submit pending orders" on public.orders;
 create policy "Public can submit pending orders"
