@@ -19,8 +19,10 @@
         </div>
         <div class="nav-menu">
             <ul>
-                <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
+                <li class="nav-current"><a href="index.html" class="translate" data-en="Home" data-es="Inicio" aria-current="page">Home</a></li>
+                <li><a href="products.html" class="translate" data-en="Products" data-es="Productos">Products</a></li>
                 <li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li>
+                <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
             </ul>
             <button id="lang-toggle" class="lang-btn">ES</button>
         </div>
@@ -36,7 +38,8 @@
         </div>
     </header>
 
-    <section id="how-it-works">
+    <section class="home-categories" aria-labelledby="categories-title"><h2 id="categories-title" class="translate" data-en="Shop by Category" data-es="Compra por Categoría">Shop by Category</h2><p class="translate" data-en="From personalized gifts to party decorations, explore what we can create." data-es="Desde regalos personalizados hasta decoraciones para fiestas, descubre lo que podemos crear.">From personalized gifts to party decorations, explore what we can create.</p><div class="category-grid"><a class="category-card" href="personalized-gifts.html"><h3 class="translate" data-en="Personalized Gifts" data-es="Regalos Personalizados">Personalized Gifts</h3><span class="translate" data-en="Mugs, tumblers, clothing and more →" data-es="Tazas, vasos, ropa y más →">Mugs, tumblers, clothing and more →</span></a><a class="category-card" href="accessories.html"><h3 class="translate" data-en="Custom Accessories" data-es="Accesorios Personalizados">Custom Accessories</h3><span class="translate" data-en="Everyday custom details →" data-es="Detalles únicos para cada día →">Everyday custom details →</span></a><a class="category-card" href="gift-arrangements.html"><h3 class="translate" data-en="Gift Arrangements" data-es="Arreglos de Regalo">Gift Arrangements</h3><span class="translate" data-en="Thoughtful gifts and bouquets →" data-es="Regalos y ramos especiales →">Thoughtful gifts and bouquets →</span></a><a class="category-card" href="party-decorations.html"><h3 class="translate" data-en="Party Decorations" data-es="Decoraciones para Fiestas">Party Decorations</h3><span class="translate" data-en="Celebrate every occasion →" data-es="Celebra cada ocasión →">Celebrate every occasion →</span></a></div><p><a class="btn translate" href="products.html" data-en="See All Products" data-es="Ver Todos los Productos">See All Products</a></p></section>
+<section id="how-it-works">
         <h2 class="translate" data-en="How to Order" data-es="Cómo Hacer un Pedido">How to Order</h2>
         <div class="steps-grid">
             <div class="step-card">
@@ -47,7 +50,7 @@
             <div class="step-card">
                 <div class="step-num">2</div>
                 <h3 class="translate" data-en="Share Your Vision" data-es="Comparte tu Visión">Share Your Vision</h3>
-                <p class="translate" data-en="Fill out the form with your design ideas and upload a reference image." data-es="Llena el formulario con tus ideas de diseño y sube una imagen de referencia.">Fill out the form with your design ideas and upload a reference image.</p>
+                <p class="translate" data-en="Fill out the form with your design ideas. Attach any reference image in WhatsApp." data-es="Llena el formulario con tus ideas. Adjunta la imagen de referencia en WhatsApp.">Fill out the form with your design ideas and upload a reference image.</p>
             </div>
             <div class="step-card">
                 <div class="step-num">3</div>
@@ -87,7 +90,7 @@
                     <option value="tops">Tops (Shirts/Jerseys)</option>
                     <option value="tumbler">Tumbler</option>
                     <option value="headwear">Headwear (Bows/Hats)</option>
-                    <option value="other">Other / Sign</option>
+                    <option value="accessories" class="translate" data-en="Custom Accessories" data-es="Accesorios Personalizados">Custom Accessories</option><option value="arrangements" class="translate" data-en="Gift Arrangements" data-es="Arreglos de Regalo">Gift Arrangements</option><option value="party" class="translate" data-en="Party Decorations" data-es="Decoraciones para Fiestas">Party Decorations</option><option value="other" class="translate" data-en="Other / Sign" data-es="Otro / Letrero">Other / Sign</option>
                 </select>
                 <label for="descInput" class="sr-only">Describe your custom design</label>
                 <textarea id="descInput" name="description" placeholder="Describe your custom design" rows="5" maxlength="1000"></textarea>
@@ -97,7 +100,7 @@
                 </label>
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 <div id="file-name-display" class="file-name" aria-live="polite"></div>
-                <p class="form-note translate" data-en="After WhatsApp opens, attach your reference image in the chat before sending." data-es="Cuando se abra WhatsApp, adjunta tu imagen de referencia en el chat antes de enviar.">Your request and optional reference image will be submitted securely for the shop to review.</p>
+                <p class="form-note translate" data-en="After WhatsApp opens, attach your reference image in the chat before sending." data-es="Cuando se abra WhatsApp, adjunta tu imagen de referencia en el chat antes de enviar.">After WhatsApp opens, attach your reference image in the chat before sending.</p>
 
                 <div class="price-display">
                     <span class="translate" data-en="Estimated Starting Price: " data-es="Precio Inicial Estimado: ">Estimated Starting Price: </span>
@@ -105,7 +108,7 @@
                 </div>
 
                 <div id="form-status" class="status-msg" role="status" aria-live="polite"></div>
-                <button type="submit" class="btn-submit translate" data-en="Submit Order Request" data-es="Enviar Solicitud">Submit Order Request</button>
+                <button type="submit" class="btn-submit translate" data-en="Continue to WhatsApp" data-es="Continuar a WhatsApp">Continue to WhatsApp</button>
             </form>
         </section>
     </div>

@@ -13,8 +13,10 @@
         <div class="nav-container"><a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a></div>
         <div class="nav-menu">
             <ul>
-                <li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li>
+                <li><a href="index.html" class="translate" data-en="Home" data-es="Inicio">Home</a></li>
+                <li><a href="products.html" class="translate" data-en="Products" data-es="Productos">Products</a></li>
                 <li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li>
+                <li class="nav-current"><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia" aria-current="page">Our Story</a></li>
             </ul>
             <button id="lang-toggle" class="lang-btn">ES</button>
         </div>
@@ -46,12 +48,12 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h4 class="translate" data-en="Quick Links" data-es="Enlaces Rápidos">Quick Links</h4>
-                <ul><li><a href="index.html">Home</a></li><li><a href="story.html">Our Story</a></li><li><a href="gallery.html">Gallery</a></li></ul>
+                <ul><li><a href="index.html" class="translate" data-en="Home" data-es="Inicio">Home</a></li><li><a href="story.html" class="translate" data-en="Our Story" data-es="Nuestra Historia">Our Story</a></li><li><a href="gallery.html" class="translate" data-en="Gallery" data-es="Galería">Gallery</a></li></ul>
             </div>
             <div class="footer-col">
                 <h4 class="translate" data-en="Contact Us" data-es="Contáctanos">Contact Us</h4>
                 <p>Everett, Massachusetts</p>
-                <p>Mon - Sat: 9am - 6pm</p>
+                <p class="translate" data-en="Mon - Sat: 9am - 6pm" data-es="Lun - Sáb: 9am - 6pm">Mon - Sat: 9am - 6pm</p>
             </div>
             <div class="footer-col">
                 <h4 class="translate" data-en="Follow Our Craft" data-es="Sigue Nuestro Arte">Follow Our Craft</h4>
@@ -65,15 +67,6 @@
         <div class="footer-bottom"><p>&copy; 2026 Dianita's Shop by DJ's</p></div>
     </footer>
 
-    <script>
-        const langToggle = document.getElementById('lang-toggle');
-        const translateElements = document.querySelectorAll('.translate');
-        let currentLang = 'en';
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'es' : 'en';
-            langToggle.innerText = currentLang === 'en' ? 'ES' : 'EN';
-            translateElements.forEach(el => { el.innerText = el.getAttribute(`data-${currentLang}`); });
-        });
-    </script>
+    <script src="site-language.js" defer></script>
 </body>
 </html>
