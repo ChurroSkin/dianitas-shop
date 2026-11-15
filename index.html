@@ -97,7 +97,7 @@
                 </label>
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 <div id="file-name-display" class="file-name" aria-live="polite"></div>
-                <p class="form-note translate" data-en="After WhatsApp opens, attach your reference image in the chat before sending." data-es="Cuando se abra WhatsApp, adjunta tu imagen de referencia en el chat antes de enviar.">After WhatsApp opens, attach your reference image in the chat before sending.</p>
+                <p class="form-note translate" data-en="Your request and optional reference image will be submitted securely for the shop to review." data-es="Tu solicitud y la imagen de referencia opcional se enviarán de forma segura para que la tienda las revise.">Your request and optional reference image will be submitted securely for the shop to review.</p>
 
                 <div class="price-display">
                     <span class="translate" data-en="Estimated Starting Price: " data-es="Precio Inicial Estimado: ">Estimated Starting Price: </span>
@@ -105,7 +105,7 @@
                 </div>
 
                 <div id="form-status" class="status-msg" role="status" aria-live="polite"></div>
-                <button type="submit" class="btn-submit translate" data-en="Continue to WhatsApp" data-es="Continuar a WhatsApp">Continue to WhatsApp</button>
+                <button type="submit" class="btn-submit translate" data-en="Submit Order Request" data-es="Enviar Solicitud">Submit Order Request</button>
             </form>
         </section>
     </div>
@@ -142,92 +142,6 @@
         </div>
     </footer>
 
-    <script>
-        // Replace with the shop's WhatsApp number in international format, digits only.
-        const WHATSAPP_NUMBER = "ADD_DIANITAS_WHATSAPP_NUMBER";
-        const langToggle = document.getElementById('lang-toggle');
-        const translateElements = document.querySelectorAll('.translate');
-        const orderForm = document.getElementById('secureOrderForm');
-        const itemSelect = document.getElementById('itemSelect');
-        const priceAmount = document.getElementById('price-amount');
-        const fileInput = document.getElementById('fileInput');
-        const fileNameDisplay = document.getElementById('file-name-display');
-        const formStatus = document.getElementById('form-status');
-        const priceMap = { mug: 15, tops: 25, tumbler: 25, headwear: 12, other: 20 };
-        let currentLang = 'en';
-
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'es' : 'en';
-            langToggle.innerText = currentLang === 'en' ? 'ES' : 'EN';
-            document.documentElement.lang = currentLang;
-            translateElements.forEach(el => {
-                const translated = el.getAttribute(`data-${currentLang}`);
-                if (translated) el.innerText = translated;
-            });
-        });
-
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (!file) {
-                fileNameDisplay.textContent = '';
-                fileNameDisplay.style.display = 'none';
-                return;
-            }
-            if (!file.type.startsWith('image/')) {
-                fileInput.value = '';
-                fileNameDisplay.textContent = currentLang === 'en' ? 'Please choose an image.' : 'Por favor, elige una imagen.';
-            } else if (file.size > 8 * 1024 * 1024) {
-                fileInput.value = '';
-                fileNameDisplay.textContent = currentLang === 'en' ? 'Image must be 8 MB or smaller.' : 'La imagen debe pesar 8 MB o menos.';
-            } else {
-                fileNameDisplay.textContent = file.name;
-            }
-            fileNameDisplay.style.display = 'block';
-        });
-
-        itemSelect.addEventListener('change', () => {
-            const val = itemSelect.value;
-            priceAmount.innerText = val ? `$${priceMap[val].toFixed(2)}` : '$0.00';
-            priceAmount.parentElement.style.opacity = val ? '1' : '0.5';
-        });
-
-        orderForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            if (!orderForm.reportValidity()) return;
-            if (!/^\\d{8,15}$/.test(WHATSAPP_NUMBER)) {
-                formStatus.className = 'status-msg error-msg';
-                formStatus.textContent = currentLang === 'en'
-                    ? 'WhatsApp ordering is not configured yet. Please contact the shop directly.'
-                    : 'Los pedidos por WhatsApp aún no están configurados. Comunícate directamente con la tienda.';
-                formStatus.style.display = 'block';
-                return;
-            }
-            const labels = {
-                mug: currentLang === 'en' ? 'Custom Mug' : 'Taza personalizada',
-                tops: currentLang === 'en' ? 'Tops (Shirts/Jerseys)' : 'Ropa (camisetas/jerseys)',
-                tumbler: currentLang === 'en' ? 'Tumbler' : 'Vaso térmico',
-                headwear: currentLang === 'en' ? 'Headwear (Bows/Hats)' : 'Accesorios (lazos/gorras)',
-                other: currentLang === 'en' ? 'Other / Sign' : 'Otro / Letrero'
-            };
-            const name = document.getElementById('nameInput').value.trim();
-            const email = document.getElementById('emailInput').value.trim();
-            const description = document.getElementById('descInput').value.trim();
-            const item = labels[itemSelect.value];
-            const estimate = priceMap[itemSelect.value].toFixed(2);
-            const imageNote = fileInput.files.length
-                ? (currentLang === 'en' ? 'I will attach my reference image in this WhatsApp chat.' : 'Adjuntaré mi imagen de referencia en este chat de WhatsApp.')
-                : (currentLang === 'en' ? 'No reference image selected.' : 'No seleccioné una imagen de referencia.');
-            const message = currentLang === 'en'
-                ? `Hello Dianita's Shop! I'd like to request a custom item.\n\nName: ${name}\nEmail: ${email}\nItem: ${item}\nEstimated starting price: $${estimate}\nDesign details: ${description || 'Not provided'}\nReference image: ${imageNote}\n\nI understand this is a starting estimate and would like to confirm the final quote.`
-                : `¡Hola, Dianita's Shop! Quisiera solicitar un artículo personalizado.\n\nNombre: ${name}\nCorreo: ${email}\nArtículo: ${item}\nPrecio inicial estimado: $${estimate}\nDetalles: ${description || 'No proporcionados'}\nImagen de referencia: ${imageNote}\n\nEntiendo que este es un precio inicial y quisiera confirmar la cotización final.`;
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank', 'noopener,noreferrer');
-            formStatus.className = 'status-msg success-msg';
-            formStatus.textContent = currentLang === 'en'
-                ? 'WhatsApp opened with your request. Review it, attach your image if applicable, and press Send in WhatsApp.'
-                : 'WhatsApp se abrió con tu solicitud. Revísala, adjunta tu imagen si corresponde y presiona Enviar.';
-            formStatus.style.display = 'block';
-        });
-    </script>
+    <script type="module" src="order-form.js"></script>
 </body>
 </html>
