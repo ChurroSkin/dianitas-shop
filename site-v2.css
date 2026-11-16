@@ -506,3 +506,12 @@ nav a {color:var(--dianita-purple)}
 .catalog-cta:hover {background:#713270}
 footer {background:#f8d9f0;color:var(--dianita-purple)}
 @media(max-width:700px){.mobile-bottom-nav {background:rgba(255,245,252,.98)}.mobile-bottom-nav a[aria-current="page"] {background:#f4ddf2;color:#823e81}}
+
+/* Keep hero copy visually centered on mobile, including narrow iPhones. */
+@media (max-width:700px) {
+  .hero .hero-content {justify-items:center}
+  .hero .hero-text-box {width:100%;max-width:520px;text-align:center}
+  .hero .hero-eyebrow,.hero .main-title,.hero .hero-description,.hero .hero-footnote {display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:center;margin-left:auto;margin-right:auto}
+  .hero .main-title {text-wrap:balance}
+  .hero .hero-actions {width:100%;align-items:center;justify-content:center}
+}
