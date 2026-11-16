@@ -12,7 +12,7 @@ const formStatus = document.getElementById("form-status");
 
 const priceMap = { mug: 15, tops: 25, tumbler: 25, headwear: 12, other: 20 };
 let currentLang = "en";
-try { currentLang = localStorage.getItem("dianitas-language") === "es" ? "es" : "en"; } catch (_) {}
+try { currentLang = sessionStorage.getItem("dianitas-language-session") === "es" ? "es" : "en"; } catch (_) {}
 
 const itemLabels = {
   en: {
@@ -50,7 +50,7 @@ function applyLanguage() {
     const translated = element.getAttribute(`data-${currentLang}`);
     if (translated !== null) element.innerText = translated;
   });
-  try { localStorage.setItem("dianitas-language", currentLang); } catch (_) {}
+  try { sessionStorage.setItem("dianitas-language-session", currentLang); } catch (_) {}
 }
 applyLanguage();
 langToggle.addEventListener("click", () => {
